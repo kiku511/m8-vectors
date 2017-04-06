@@ -21,15 +21,23 @@ MarbleGame <- function(guess) {
 MarbleGame('blue')
 
 # Bonus: Play the marble game until you win, keeping track of how many tries you take
-ifwin <- FALSE
-tries <- 0
-while(!ifwin) {
-  tries <- tries + 1
-  result <- MarbleGame('blue')
-  if(result == "You won!")
-    ifwin <- TRUE
+UntilWin <- function() {
+  ifwin <- FALSE
+  tries <- 0
+  while(!ifwin) {
+    tries <- tries + 1
+    result <- MarbleGame('blue')
+    if(result == "You guessed it correctly!")
+      ifwin <- TRUE
+  }
+  return(tries)
 }
-print(tries)
+UntilWin()
 
 ## Double bonus(answer not provided): play the game 1000X (until you win) and track the average number of tries
 # Is it what you expected based on the probability
+total.tries <- 0
+for (try in c(1:1000)) {
+  total.tries <- total.tries + UntilWin()
+}
+print(total.tries/1000)
